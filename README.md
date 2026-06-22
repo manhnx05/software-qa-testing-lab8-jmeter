@@ -56,6 +56,8 @@ Kịch bản kiểm thử được áp dụng đối với trang web thực hàn
 - **Ramp-up Period (seconds):** 5 (Thời gian để JMeter kích hoạt toàn bộ 10 users là 5 giây. Trung bình cứ 0.5 giây sẽ có 1 người dùng gửi request vào server).
 - **Loop Count:** 1 (Mỗi người dùng ảo sẽ chỉ lặp lại kịch bản đúng 1 vòng duy nhất).
 
+![Thread Group Configuration](./results/thread_group.png)
+
 ---
 
 ## 6. Các kịch bản kiểm thử (Test Cases)
@@ -66,6 +68,8 @@ Kịch bản Test Plan (`BlazeDemo_Basic_Test.jmx`) được thiết kế tuần
 - **Mục đích:** Người dùng truy cập trang chủ của BlazeDemo để chuẩn bị đặt chuyến bay.
 - **Assertion kiểm chứng:** `Response Assertion` kiểm tra dữ liệu phản hồi (Response Data) bắt buộc phải chứa chuỗi `"Welcome to the Simple Travel Agency!"` để đảm bảo hệ thống đã tải đúng trang chính xác chứ không bị lỗi (Ví dụ lỗi 404, 500...).
 
+![Home Page Assertion](./results/home_page.png)
+
 **Bước 2: Tìm kiếm chuyến bay (2. Reserve Flight)**
 - **Method & Path:** `POST /reserve.php`
 - **Tham số truyền vào (Parameters):** 
@@ -73,6 +77,8 @@ Kịch bản Test Plan (`BlazeDemo_Basic_Test.jmx`) được thiết kế tuần
   - `toPort` = `Buenos Aires`
 - **Mục đích:** Khách hàng tìm kiếm danh sách các chuyến bay xuất phát từ Paris và đến Buenos Aires.
 - **Assertion kiểm chứng:** Kiểm tra xem nội dung trang kế tiếp hiển thị có chứa đoạn `"Flights from Paris to Buenos Aires:"` hay không. Điều này khẳng định Form tìm kiếm đã Submit thành công.
+
+![Reserve Flight Assertion](./results/reserve_flight.png)
 
 **Bước 3: Chọn và xác nhận chuyến bay (3. Purchase Flight)**
 - **Method & Path:** `POST /purchase.php`
@@ -83,12 +89,16 @@ Kịch bản Test Plan (`BlazeDemo_Basic_Test.jmx`) được thiết kế tuần
 - **Mục đích:** Khách hàng quyết định chọn chuyến bay mong muốn và hệ thống chuyển hướng đến giao diện điền thông tin thanh toán cho vé máy bay giá $472.56 của hãng Virgin America.
 - **Assertion kiểm chứng:** Hệ thống phải trả về trang thanh toán có nội dung `"Please submit the form below to purchase the flight."`.
 
+![Purchase Flight Assertion](./results/purchase_flight.png)
+
 **Bước 4: Hoàn tất thanh toán mua vé (4. Confirmation)**
 - **Method & Path:** `POST /confirmation.php`
 - **Tham số truyền vào (Parameters):** 
   - `inputName` = `Test User`
 - **Mục đích:** Khách hàng hoàn tất gửi thông tin và xác nhận thanh toán.
 - **Assertion kiểm chứng:** Xác nhận giao dịch mua vé thành công thông qua thông báo `"Thank you for your purchase today!"` trả về trong phản hồi của server.
+
+![Confirmation Assertion](./results/confirmation.png)
 
 ---
 
